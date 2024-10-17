@@ -25,7 +25,7 @@ Create a new FizzBuzz rule or update an existing one.
 
 - **URL**
 
-  /FizzBuzzRule/:Id
+  /FizzBuzzRule/Id
 
 - **Method:**
 

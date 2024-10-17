@@ -39,23 +39,21 @@ namespace FizzBuzzApi.Controllers
         private string FizzBuzzCheckRules(long value)
         {
             string result = "";
-            var rules = _context.FizzBuzzRules.Where(r => ((value % r.Id) == 0));
+            var allRules = _context.FizzBuzzRules.ToList();
+            var rules = allRules.Where(r => ((value % r.Id) == 0));
 
-            if (rules != null)
+            var count = rules.Count();
+            if (count > 0)
             {
-                var count = rules.Count();
-                if (count > 0)
+                for (int i = 0; i < count; i++)
                 {
-                    for (int i = 0; i < count; i++)
-                    {
-                        FizzBuzzRule rule = rules.ToList().ElementAt(i);
-                        result += rule.ReplaceWith;
-                    }
+                    FizzBuzzRule rule = rules.ToList().ElementAt(i);
+                    result += rule.ReplaceWith;
                 }
-                else
-                {
-                    result = value.ToString();
-                }
+            }
+            else
+            {
+                result = value.ToString();
             }
             return result;
         }
