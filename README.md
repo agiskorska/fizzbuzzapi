@@ -168,31 +168,46 @@ Play the FizzBuzz game according to the current set of rules.
         "value": "1"
       },
       {
+        "value": "2"
+      },
+      {
         "value": "Fizz"
+      },
+      {
+        "value": "4"
       },
       {
         "value": "Buzz"
       },
       {
         "value": "Fizz"
-      },
-      {
-        "value": "5"
-      },
-      {
-        "value": "FizzBuzz"
       },
       {
         "value": "7"
       },
       {
+        "value": "8"
+      },
+      {
         "value": "Fizz"
       },
       {
         "value": "Buzz"
       },
       {
+        "value": "11"
+      },
+      {
         "value": "Fizz"
+      },
+      {
+        "value": "13"
+      },
+      {
+        "value": "14"
+      },
+      {
+        "value": "FizzBuzz"
       }
     ]
     ```
