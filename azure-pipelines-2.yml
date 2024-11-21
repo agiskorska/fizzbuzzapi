@@ -17,8 +17,8 @@ steps:
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
 - script: ls
-- task: PublishBuildArtifacts@1
+- task: DotNetCoreCLI@2
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+    azureSubscription: 'NONPROD'
+    command: 'publish'
+    publishWebProjects: true
