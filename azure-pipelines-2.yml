@@ -12,8 +12,8 @@ steps:
   inputs:
     version: 6.x
     performMultiLevelLookup: true
-    includePreviewVersions: true # Required for preview versions
-
+    includePreviewVersions: true 
+    
 - task: NuGetCommand@2
   inputs:
     command: 'restore'
@@ -33,7 +33,6 @@ steps:
     arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
     zipAfterPublish: True
 
-# this code takes all the files in $(Build.ArtifactStagingDirectory) and uploads them as an artifact of your build.
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(Build.ArtifactStagingDirectory)' 
