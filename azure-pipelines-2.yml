@@ -1,8 +1,23 @@
 trigger:
 - main
-
+parameters: 
+  - name: environment
+    displayName: 'Environment'
+    type: string
+    default: 'dev'
+    values:
+      - 'dev'
+      - 'prod'
+  - name: buildConfiguration
+    displayName: 'Build Configuration'
+    type: string
+    default: 'Release'
+    values:
+      - 'Debug'
+      - 'Release'
 pool:
-  vmImage: 'windows-latest'
+  name: ba-${{ parameters.environment }}-deployment
+  vmImage: 'windows-2022'
 
 variables:
   buildConfiguration: 'Release'
@@ -12,8 +27,8 @@ steps:
   inputs:
     version: 6.x
     performMultiLevelLookup: true
-    includePreviewVersions: true # Required for preview versions
-
+    includePreviewVersions: true 
+    
 - task: NuGetCommand@2
   inputs:
     command: 'restore'
@@ -33,7 +48,6 @@ steps:
     arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
     zipAfterPublish: True
 
-# this code takes all the files in $(Build.ArtifactStagingDirectory) and uploads them as an artifact of your build.
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(Build.ArtifactStagingDirectory)' 
