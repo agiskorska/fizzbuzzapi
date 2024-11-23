@@ -1,8 +1,23 @@
 trigger:
 - main
-
+parameters: 
+  - name: environment
+    displayName: 'Environment'
+    type: string
+    default: 'dev'
+    values:
+      - 'dev'
+      - 'prod'
+  - name: buildConfiguration
+    displayName: 'Build Configuration'
+    type: string
+    default: 'Release'
+    values:
+      - 'Debug'
+      - 'Release'
 pool:
-  vmImage: 'windows-latest'
+  name: ba-${{ parameters.environment }}-deployment
+  vmImage: 'windows-2022'
 
 variables:
   buildConfiguration: 'Release'

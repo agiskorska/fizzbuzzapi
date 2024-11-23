@@ -40,7 +40,7 @@ namespace FizzBuzzApi.Controllers
         {
             string result = "";
             var allRules = _context.FizzBuzzRules.ToList();
-            var rules = allRules.Where(r => ((value % r.Id) == 0));
+            var rules = allRules.Where(r => ((value % r.Id) == 0 ));
 
             var count = rules.Count();
             if (count > 0)
