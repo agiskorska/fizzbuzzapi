@@ -2,16 +2,12 @@ trigger:
 - main
 
 
-stages:
-  - stage: publish_dev
-    jobs: 
-      - template: cicd/publish_artifact.yml
-        parameters:
-          environment: 'dev'
-          buildConfiguration: 'Release'
-  - stage: publish_dev
-    jobs: 
-      - template: cicd/publish_artifact.yml
-        parameters:
-          environment: 'prod'
-          buildConfiguration: 'Release'
+jobs: 
+  - template: cicd/publish_artifact.yml
+    parameters:
+      environment: 'dev'
+      buildConfiguration: 'Release'
+  - template: cicd/publish_artifact.yml
+    parameters:
+      environment: 'prod'
+      buildConfiguration: 'Release'
