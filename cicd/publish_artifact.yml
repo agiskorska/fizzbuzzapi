@@ -15,7 +15,7 @@ parameters:
       - 'Release'
 
 jobs:
-- job: PublishArtifact
+- job: PublishArtifact${{ parameters.environment }}
   pool:
     name: ba-${{ parameters.environment }}-deployment
     vmImage: 'windows-2022'
