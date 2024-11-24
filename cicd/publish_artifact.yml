@@ -52,4 +52,4 @@ jobs:
   - task: PublishPipelineArtifact@1
     inputs:
       targetPath: '$(Build.ArtifactStagingDirectory)' 
-      artifactName: 'myWebsite'
+      artifactName: 'fizzbuzz${{ parameters.environment }}'
