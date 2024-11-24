@@ -19,7 +19,8 @@ jobs:
   pool:
     name: ba-${{ parameters.environment }}-deployment
     vmImage: 'windows-2022'
-
+  workspace:
+    clean: all
   variables:
     buildConfiguration: 'Release'
   steps:

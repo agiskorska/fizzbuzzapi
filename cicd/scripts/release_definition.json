@@ -1,6 +1,6 @@
 {
     "source": 2,
-    "revision": 3,
+    "revision": 5,
     "description": null,
     "createdBy": {
         "displayName": "Aggie Skorska",
@@ -29,7 +29,7 @@
         "imageUrl": "https://dev.azure.com/aggieskorska/_apis/GraphProfile/MemberAvatars/aad.ZDEzYTJhYzYtODg2Ny03NzhkLWFmZTYtZjdhN2U0YjYxZmNl",
         "descriptor": "aad.ZDEzYTJhYzYtODg2Ny03NzhkLWFmZTYtZjdhN2U0YjYxZmNl"
     },
-    "modifiedOn": "2024-11-22T12:15:00.387Z",
+    "modifiedOn": "2024-11-24T15:03:03.200Z",
     "isDeleted": false,
     "isDisabled": false,
     "lastRelease": {
@@ -63,7 +63,7 @@
     "environments": [
         {
             "id": 2,
-            "name": "Stage 1",
+            "name": "DEV",
             "rank": 1,
             "owner": {
                 "displayName": "Aggie Skorska",
@@ -511,6 +511,309 @@
             },
             "environmentTriggers": [],
             "badgeUrl": "https://vsrm.dev.azure.com/aggieskorska/_apis/public/Release/badge/e0df5970-8d87-4ff2-be43-a7e24ea7199e/2/2"
+        },
+        {
+            "id": 3,
+            "name": "PROD",
+            "rank": 2,
+            "owner": {
+                "displayName": "Aggie Skorska",
+                "url": "https://spsprodwus31.vssps.visualstudio.com/Ae191b445-2d65-4a63-8e6d-09635e236412/_apis/Identities/2c175c4b-82af-6202-9f3a-d65cd8ef3cc3",
+                "_links": {
+                    "avatar": {
+                        "href": "https://dev.azure.com/aggieskorska/_apis/GraphProfile/MemberAvatars/aad.ZDEzYTJhYzYtODg2Ny03NzhkLWFmZTYtZjdhN2U0YjYxZmNl"
+                    }
+                },
+                "id": "2c175c4b-82af-6202-9f3a-d65cd8ef3cc3",
+                "uniqueName": "aggie.skorska@gmail.com",
+                "imageUrl": "https://dev.azure.com/aggieskorska/_apis/GraphProfile/MemberAvatars/aad.ZDEzYTJhYzYtODg2Ny03NzhkLWFmZTYtZjdhN2U0YjYxZmNl",
+                "descriptor": "aad.ZDEzYTJhYzYtODg2Ny03NzhkLWFmZTYtZjdhN2U0YjYxZmNl"
+            },
+            "variables": {},
+            "variableGroups": [],
+            "preDeployApprovals": {
+                "approvals": [
+                    {
+                        "rank": 1,
+                        "isAutomated": true,
+                        "isNotificationOn": false,
+                        "id": 8
+                    }
+                ],
+                "approvalOptions": {
+                    "requiredApproverCount": null,
+                    "releaseCreatorCanBeApprover": false,
+                    "autoTriggeredAndPreviousEnvironmentApprovedCanBeSkipped": false,
+                    "enforceIdentityRevalidation": false,
+                    "timeoutInMinutes": 0,
+                    "executionOrder": 1
+                }
+            },
+            "deployStep": {
+                "id": 9
+            },
+            "postDeployApprovals": {
+                "approvals": [
+                    {
+                        "rank": 1,
+                        "isAutomated": true,
+                        "isNotificationOn": false,
+                        "id": 10
+                    }
+                ],
+                "approvalOptions": {
+                    "requiredApproverCount": null,
+                    "releaseCreatorCanBeApprover": false,
+                    "autoTriggeredAndPreviousEnvironmentApprovedCanBeSkipped": false,
+                    "enforceIdentityRevalidation": false,
+                    "timeoutInMinutes": 0,
+                    "executionOrder": 2
+                }
+            },
+            "deployPhases": [
+                {
+                    "deploymentInput": {
+                        "parallelExecution": {
+                            "parallelExecutionType": 0
+                        },
+                        "agentSpecification": null,
+                        "skipArtifactsDownload": false,
+                        "artifactsDownloadInput": {
+                            "downloadInputs": [
+                                {
+                                    "alias": "_FizzBuzzApi (5)",
+                                    "artifactType": "Build",
+                                    "artifactDownloadMode": "Skip",
+                                    "artifactItems": []
+                                }
+                            ]
+                        },
+                        "queueId": 4,
+                        "demands": [],
+                        "enableAccessToken": false,
+                        "timeoutInMinutes": 0,
+                        "jobCancelTimeoutInMinutes": 1,
+                        "condition": "succeeded()",
+                        "overrideInputs": {}
+                    },
+                    "rank": 1,
+                    "phaseType": 1,
+                    "name": "Run on agent",
+                    "refName": null,
+                    "workflowTasks": [
+                        {
+                            "environment": {},
+                            "taskId": "497d490f-eea7-4f2b-ab94-48d9c1acdcb1",
+                            "version": "4.*",
+                            "name": "Deploy Azure App Service",
+                            "refName": "",
+                            "enabled": true,
+                            "alwaysRun": false,
+                            "continueOnError": false,
+                            "timeoutInMinutes": 0,
+                            "retryCountOnTaskFailure": 0,
+                            "definitionType": null,
+                            "overrideInputs": {},
+                            "condition": "succeeded()",
+                            "inputs": {
+                                "ConnectionType": "AzureRM",
+                                "ConnectedServiceName": "$(Parameters.ConnectedServiceName)",
+                                "PublishProfilePath": "$(System.DefaultWorkingDirectory)/**/*.pubxml",
+                                "PublishProfilePassword": "",
+                                "WebAppKind": "$(Parameters.WebAppKind)",
+                                "WebAppName": "$(Parameters.WebAppName)",
+                                "DeployToSlotOrASEFlag": "false",
+                                "ResourceGroupName": "",
+                                "SlotName": "production",
+                                "DockerNamespace": "$(Parameters.DockerNamespace)",
+                                "DockerRepository": "$(Parameters.DockerRepository)",
+                                "DockerImageTag": "$(Build.BuildId)",
+                                "VirtualApplication": "",
+                                "Package": "$(System.DefaultWorkingDirectory)/**/*.zip",
+                                "RuntimeStack": "",
+                                "RuntimeStackFunction": "",
+                                "StartupCommand": "$(Parameters.StartupCommand)",
+                                "ScriptType": "",
+                                "InlineScript": "",
+                                "ScriptPath": "",
+                                "WebConfigParameters": "",
+                                "AppSettings": "",
+                                "ConfigurationSettings": "",
+                                "UseWebDeploy": "false",
+                                "DeploymentType": "webDeploy",
+                                "TakeAppOfflineFlag": "true",
+                                "SetParametersFile": "",
+                                "RemoveAdditionalFilesFlag": "false",
+                                "ExcludeFilesFromAppDataFlag": "false",
+                                "AdditionalArguments": "",
+                                "RenameFilesFlag": "true",
+                                "XmlTransformation": "false",
+                                "XmlVariableSubstitution": "false",
+                                "JSONFiles": ""
+                            }
+                        }
+                    ]
+                }
+            ],
+            "environmentOptions": {
+                "emailNotificationType": "OnlyOnFailure",
+                "emailRecipients": "release.environment.owner;release.creator",
+                "skipArtifactsDownload": false,
+                "timeoutInMinutes": 0,
+                "enableAccessToken": false,
+                "publishDeploymentStatus": true,
+                "badgeEnabled": false,
+                "autoLinkWorkItems": false,
+                "pullRequestDeploymentEnabled": false
+            },
+            "demands": [],
+            "conditions": [
+                {
+                    "name": "DEV",
+                    "conditionType": 2,
+                    "value": "4",
+                    "result": null
+                }
+            ],
+            "executionPolicy": {
+                "concurrencyCount": 1,
+                "queueDepthCount": 0
+            },
+            "schedules": [],
+            "currentRelease": {
+                "id": 0,
+                "url": "https://vsrm.dev.azure.com/aggieskorska/e0df5970-8d87-4ff2-be43-a7e24ea7199e/_apis/Release/releases/0",
+                "_links": {}
+            },
+            "retentionPolicy": {
+                "daysToKeep": 30,
+                "releasesToKeep": 3,
+                "retainBuild": true
+            },
+            "processParameters": {
+                "inputs": [
+                    {
+                        "aliases": [],
+                        "options": {},
+                        "properties": {},
+                        "name": "ConnectedServiceName",
+                        "label": "Azure subscription",
+                        "defaultValue": "f7d711a0-085c-45a4-b9a5-a942cb7c21bd",
+                        "required": true,
+                        "type": "connectedService:AzureRM",
+                        "helpMarkDown": "Select the Azure Resource Manager subscription for the deployment.",
+                        "visibleRule": "",
+                        "groupName": ""
+                    },
+                    {
+                        "aliases": [],
+                        "options": {
+                            "webApp": "Web App on Windows",
+                            "webAppLinux": "Web App on Linux",
+                            "webAppContainer": "Web App for Containers (Linux)",
+                            "functionApp": "Function App on Windows",
+                            "functionAppLinux": "Function App on Linux",
+                            "functionAppContainer": "Function App for Containers (Linux)",
+                            "apiApp": "API App",
+                            "mobileApp": "Mobile App"
+                        },
+                        "properties": {
+                            "EditableOptions": "false"
+                        },
+                        "name": "WebAppKind",
+                        "label": "App type",
+                        "defaultValue": "webApp",
+                        "type": "pickList",
+                        "helpMarkDown": "",
+                        "groupName": ""
+                    },
+                    {
+                        "aliases": [],
+                        "options": {},
+                        "properties": {
+                            "EditableOptions": "True"
+                        },
+                        "name": "WebAppName",
+                        "label": "App service name",
+                        "defaultValue": "prod-rg-fizzbuzz",
+                        "required": true,
+                        "type": "pickList",
+                        "helpMarkDown": "Enter or select the name of an existing Azure App Service.",
+                        "visibleRule": "",
+                        "groupName": ""
+                    },
+                    {
+                        "aliases": [],
+                        "options": {},
+                        "properties": {},
+                        "name": "DockerNamespace",
+                        "label": "Registry or Namespace",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "helpMarkDown": "A globally unique top-level domain name for your specific registry or namespace.<br/> Note: Fully qualified image name will be of the format: '<b>`<registry or namespace`></b>/`<repository`>:`<tag`>'. For example, '<b>myregistry.azurecr.io</b>/nginx:latest'.",
+                        "visibleRule": "WebAppKind = webAppContainer || WebAppkind = functionAppContainer",
+                        "groupName": ""
+                    },
+                    {
+                        "aliases": [],
+                        "options": {},
+                        "properties": {},
+                        "name": "DockerRepository",
+                        "label": "Repository",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "helpMarkDown": "Name of the repository where the container images are stored.<br/> Note: Fully qualified image name will be of the format: '`<registry or namespace`>/<b>`<repository`></b>:`<tag`>'. For example, 'myregistry.azurecr.io/<b>nginx</b>:latest'.",
+                        "visibleRule": "WebAppKind = webAppContainer || WebAppkind = functionAppContainer",
+                        "groupName": ""
+                    },
+                    {
+                        "aliases": [],
+                        "options": {},
+                        "properties": {},
+                        "name": "StartupCommand",
+                        "label": "Startup command",
+                        "defaultValue": "",
+                        "type": "string",
+                        "helpMarkDown": "Enter the start up command. For ex.<br/>dotnet run<br/>dotnet filename.dll",
+                        "visibleRule": "WebAppKind = webAppLinux || WebAppKind = webAppContainer || WebAppkind = functionAppContainer || WebAppKind = functionAppLinux",
+                        "groupName": ""
+                    }
+                ],
+                "dataSourceBindings": [
+                    {
+                        "dataSourceName": "AzureRMWebAppNamesByAppType",
+                        "parameters": {
+                            "WebAppKind": "$(WebAppKind)"
+                        },
+                        "endpointId": "$(ConnectedServiceName)",
+                        "target": "WebAppName"
+                    }
+                ]
+            },
+            "properties": {
+                "BoardsEnvironmentType": {
+                    "$type": "System.String",
+                    "$value": "unmapped"
+                },
+                "LinkBoardsWorkItems": {
+                    "$type": "System.String",
+                    "$value": "False"
+                }
+            },
+            "preDeploymentGates": {
+                "id": 0,
+                "gatesOptions": null,
+                "gates": []
+            },
+            "postDeploymentGates": {
+                "id": 0,
+                "gatesOptions": null,
+                "gates": []
+            },
+            "environmentTriggers": [],
+            "badgeUrl": "https://vsrm.dev.azure.com/aggieskorska/_apis/public/Release/badge/e0df5970-8d87-4ff2-be43-a7e24ea7199e/2/3"
         }
     ],
     "artifacts": [
@@ -582,7 +885,7 @@
         }
     },
     "id": 2,
-    "name": "devops-test",
+    "name": "fizzbuzz-release",
     "path": "\\",
     "projectReference": null,
     "url": "https://vsrm.dev.azure.com/aggieskorska/e0df5970-8d87-4ff2-be43-a7e24ea7199e/_apis/Release/definitions/2",
