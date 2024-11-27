@@ -1,0 +1,56 @@
+parameters: 
+  - name: environment
+    displayName: 'Environment'
+    type: string
+    default: 'dev'
+    values:
+      - 'dev'
+      - 'prod'
+  - name: buildConfiguration
+    displayName: 'Build Configuration'
+    type: string
+    default: 'Release'
+    values:
+      - 'Debug'
+      - 'Release'
+
+jobs:
+- job: PublishArtifact${{ parameters.environment }}
+  pool:
+    name: ba-${{ parameters.environment }}-deployment
+    vmImage: 'windows-2022'
+  workspace:
+    clean: all
+  variables:
+    buildConfiguration: 'Release'
+  steps:
+  - task: UseDotNet@2
+    displayName: 'Install .NET Core SDK'
+    inputs:
+      version: 6.x
+      performMultiLevelLookup: true
+      includePreviewVersions: true 
+      
+  - task: NuGetCommand@2
+    inputs:
+      command: 'restore'
+      restoreSolution: '**/*.sln'
+      feedsToUse: 'select'
+
+  - task: DotNetCoreCLI@2
+    inputs:
+      command: 'build'
+      arguments: '--configuration $(buildConfiguration)'
+    displayName: 'dotnet build $(buildConfiguration)'
+    
+  - task: DotNetCoreCLI@2
+    inputs:
+      command: publish
+      publishWebProjects: True
+      arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+      zipAfterPublish: True
+
+  - task: PublishPipelineArtifact@1
+    inputs:
+      targetPath: '$(Build.ArtifactStagingDirectory)' 
+      artifactName: 'fizzbuzz${{ parameters.environment }}'

@@ -1,0 +1,13 @@
+trigger:
+- main
+
+
+jobs: 
+  - template: cicd/publish_artifact.yml
+    parameters:
+      environment: 'dev'
+      buildConfiguration: 'Release'
+  - template: cicd/publish_artifact.yml
+    parameters:
+      environment: 'prod'
+      buildConfiguration: 'Release'

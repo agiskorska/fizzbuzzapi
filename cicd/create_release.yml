@@ -1,0 +1,20 @@
+trigger:
+  branches:
+    include:
+      - main
+
+jobs:
+  - job: Release
+    displayName: Release Pipeline
+    pool:
+      vmImage: 'ubuntu-latest'
+
+    steps:
+      - script: |
+            chmod +x release_pipeline.sh
+            export DEFINITION_NAME=$(Build.DefinitionName)
+            export DEFINITION_ID=$(Build.DefinitionId)
+            export DESCRIPTION=$(Build.SourceBranchName)
+            export ARTIFACT_ID=$(Build.BuildId)
+            ./release_pipeline.sh  
+        displayName: 'Run release_pipeline.sh'
