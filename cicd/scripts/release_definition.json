@@ -1,6 +1,6 @@
 {
     "source": 2,
-    "revision": 5,
+    "revision": 6,
     "description": null,
     "createdBy": {
         "displayName": "Aggie Skorska",
@@ -29,12 +29,12 @@
         "imageUrl": "https://dev.azure.com/aggieskorska/_apis/GraphProfile/MemberAvatars/aad.ZDEzYTJhYzYtODg2Ny03NzhkLWFmZTYtZjdhN2U0YjYxZmNl",
         "descriptor": "aad.ZDEzYTJhYzYtODg2Ny03NzhkLWFmZTYtZjdhN2U0YjYxZmNl"
     },
-    "modifiedOn": "2024-11-24T15:03:03.200Z",
+    "modifiedOn": "2024-11-24T16:23:22.690Z",
     "isDeleted": false,
     "isDisabled": false,
     "lastRelease": {
-        "id": 3,
-        "name": "Release-2",
+        "id": 4,
+        "name": "Release-3",
         "artifacts": [],
         "_links": {},
         "description": "",
@@ -43,7 +43,7 @@
             "projectReference": null,
             "_links": {}
         },
-        "createdOn": "2024-11-23T22:45:56.717Z",
+        "createdOn": "2024-11-24T16:23:36.140Z",
         "createdBy": {
             "displayName": "Aggie Skorska",
             "url": "https://spsprodwus31.vssps.visualstudio.com/Ae191b445-2d65-4a63-8e6d-09635e236412/_apis/Identities/2c175c4b-82af-6202-9f3a-d65cd8ef3cc3",
@@ -130,10 +130,12 @@
                         "artifactsDownloadInput": {
                             "downloadInputs": [
                                 {
-                                    "alias": "_FizzBuzzApi (5)",
+                                    "alias": "_FizzBuzzArtifacts",
                                     "artifactType": "Build",
-                                    "artifactDownloadMode": "All",
-                                    "artifactItems": []
+                                    "artifactDownloadMode": "Selective",
+                                    "artifactItems": [
+                                        "fizzbuzzdev/**"
+                                    ]
                                 }
                             ]
                         },
@@ -293,8 +295,8 @@
             },
             "schedules": [],
             "currentRelease": {
-                "id": 3,
-                "url": "https://vsrm.dev.azure.com/aggieskorska/e0df5970-8d87-4ff2-be43-a7e24ea7199e/_apis/Release/releases/3",
+                "id": 4,
+                "url": "https://vsrm.dev.azure.com/aggieskorska/e0df5970-8d87-4ff2-be43-a7e24ea7199e/_apis/Release/releases/4",
                 "_links": {}
             },
             "retentionPolicy": {
@@ -310,7 +312,7 @@
                         "properties": {},
                         "name": "ConnectedServiceName",
                         "label": "Azure subscription",
-                        "defaultValue": "8d936017-4f24-4187-9132-eb4b16067d75",
+                        "defaultValue": "31701ef7-9cac-4632-9ca2-30d1498b1059",
                         "required": true,
                         "type": "connectedService:AzureRM",
                         "helpMarkDown": "Select the Azure Resource Manager subscription",
@@ -347,7 +349,7 @@
                         },
                         "name": "WebAppName",
                         "label": "App Service name",
-                        "defaultValue": "devops-test",
+                        "defaultValue": "dev-rg-fizzbuzz",
                         "required": true,
                         "type": "pickList",
                         "helpMarkDown": "Enter or select the name of an existing Azure App Service",
@@ -400,7 +402,7 @@
                         },
                         "name": "AppInsightsResourceGroupName",
                         "label": "Resource Group name for Application Insights",
-                        "defaultValue": "DefaultResourceGroup-WEU",
+                        "defaultValue": "dev-rg-fizzbuzz",
                         "required": true,
                         "type": "pickList",
                         "helpMarkDown": "Enter or Select resource group where your application insights resource is available.",
@@ -419,7 +421,7 @@
                         },
                         "name": "ApplicationInsightsResourceName",
                         "label": "Application Insights resource name",
-                        "defaultValue": "devops-test-ai",
+                        "defaultValue": "fb-app-insights-dev",
                         "required": true,
                         "type": "pickList",
                         "helpMarkDown": "Select Application Insights resource where continuous monitoring data will be recorded. <br/>If your Application Insights resource is not listed here and you want to create a new resource, click on [+New] button. Once the resource is created on Azure Portal, come back here and click on refresh button.",
@@ -581,10 +583,12 @@
                         "artifactsDownloadInput": {
                             "downloadInputs": [
                                 {
-                                    "alias": "_FizzBuzzApi (5)",
+                                    "alias": "_FizzBuzzArtifacts",
                                     "artifactType": "Build",
-                                    "artifactDownloadMode": "Skip",
-                                    "artifactItems": []
+                                    "artifactDownloadMode": "Selective",
+                                    "artifactItems": [
+                                        "fizzbuzzprod/**"
+                                    ]
                                 }
                             ]
                         },
@@ -818,14 +822,10 @@
     ],
     "artifacts": [
         {
-            "sourceId": "e0df5970-8d87-4ff2-be43-a7e24ea7199e:5",
+            "sourceId": "e0df5970-8d87-4ff2-be43-a7e24ea7199e:6",
             "type": "Build",
-            "alias": "_FizzBuzzApi (5)",
+            "alias": "_FizzBuzzArtifacts",
             "definitionReference": {
-                "artifactSourceDefinitionUrl": {
-                    "id": "https://dev.azure.com/aggieskorska/_permalink/_build/index?collectionId=ddbcdf8f-001a-414a-81a1-28ed28f773fb&projectId=e0df5970-8d87-4ff2-be43-a7e24ea7199e&definitionId=5",
-                    "name": ""
-                },
                 "defaultVersionBranch": {
                     "id": "",
                     "name": ""
@@ -843,8 +843,8 @@
                     "name": "Latest"
                 },
                 "definition": {
-                    "id": "5",
-                    "name": "FizzBuzzApi (5)"
+                    "id": "6",
+                    "name": "FizzBuzzArtifacts"
                 },
                 "definitions": {
                     "id": "",
@@ -860,6 +860,10 @@
                 },
                 "repository": {
                     "id": "",
+                    "name": ""
+                },
+                "artifactSourceDefinitionUrl": {
+                    "id": "https://dev.azure.com/aggieskorska/_permalink/_build/index?collectionId=ddbcdf8f-001a-414a-81a1-28ed28f773fb&projectId=e0df5970-8d87-4ff2-be43-a7e24ea7199e&definitionId=6",
                     "name": ""
                 }
             },
